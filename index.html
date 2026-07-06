@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial · Guia Gustavo e Mariana · @brunopro.tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D2A36;
+    --bg2: #071820;
+    --card: #0A1E28;
+    --blue: #4A9AB4;
+    --blue-light: #6DB8D4;
+    --gold: #A89820;
+    --gold-light: #E8D44D;
+    --red: #CC4A2A;
+    --white: #F5F2E8;
+    --gray: #7A9BAA;
+    --border: #1A3A4A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg2);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--gold-light));
+    z-index: 1000;
+    width: 0%;
+    transition: width 0.1s ease;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(7, 24, 32, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(74, 154, 180, 0.15);
+  }
+
+  nav .logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  nav .nav-links a {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav .nav-links a:hover { color: var(--blue-light); }
+
+  section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .section-label {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--blue);
+  }
+
+  .section-label.visible { opacity: 1; transform: translateX(0); }
+
+  h1, h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  h1 { font-size: clamp(46px, 6.5vw, 78px); }
+  h2 { font-size: clamp(36px, 5vw, 56px); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+  .delay-5 { transition-delay: 0.5s; }
+  .delay-6 { transition-delay: 0.6s; }
+
+  /* ── HERO ── */
+  #hero { background: var(--bg); }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,154,180,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,152,32,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(74,154,180,0.12);
+    border: 1px solid rgba(74,154,180,0.3);
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 28px;
+  }
+
+  .hero-tag span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    color: var(--gray);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+
+  .hero-footer {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--blue);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ── STATS MERCADO ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .stat-card.visible { opacity: 1; transform: translateY(0); }
+
+  .stat-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1;
+    display: inline;
+  }
+
+  .stat-text {
+    font-size: 19px;
+    color: var(--gray);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* ── OPORTUNIDADE ── */
+  .oport-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+    align-items: start;
+  }
+
+  .oport-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+
+  .oport-label {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--blue);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bg);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-text {
+    font-size: 19px;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  .quote-card {
+    background: rgba(7,24,32,0.8);
+    border: 1px solid var(--blue);
+    padding: 24px;
+    font-size: 19px;
+    color: var(--white);
+    line-height: 1.7;
+    font-style: italic;
+    margin-top: 20px;
+  }
+
+  /* ── FASES ── */
+  .fase-wrapper {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .fase-block {
+    border: 1px solid var(--border);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fase-block.visible { opacity: 1; transform: translateY(0); }
+
+  .fase-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 28px;
+  }
+
+  .fase-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .fase-header-content {}
+
+  .fase-tag {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .fase-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .fase-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .fase-col {
+    padding: 24px 28px;
+  }
+
+  .fase-col:first-child {
+    border-right: 1px solid var(--border);
+  }
+
+  .fase-col-label {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .fase-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fase-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  .fase-list li::before {
+    content: '';
+    display: block;
+    min-width: 8px;
+    height: 8px;
+    border-radius: 1px;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .fase-list.blue li::before { background: var(--blue); }
+  .fase-list.gold li::before { background: var(--gold-light); }
+
+  .fase-nota {
+    margin: 0 28px 24px;
+    padding: 12px 16px;
+    font-size: 17px;
+    font-style: italic;
+    border-top: none;
+  }
+
+  /* ── ESCOPO ── */
+  .escopo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .escopo-col {
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .escopo-header {
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .escopo-list {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .escopo-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  .escopo-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  .escopo-note {
+    margin: 0 20px 20px;
+    padding: 12px 16px;
+    background: rgba(74,154,180,0.06);
+    border: 1px solid rgba(74,154,180,0.2);
+    font-size: 17px;
+    color: var(--blue);
+    font-style: italic;
+  }
+
+  /* ── INVESTIMENTO ── */
+  .invest-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .invest-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .invest-card.visible { opacity: 1; transform: translateY(0); }
+
+  .invest-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .invest-card.blue::before { background: var(--blue); }
+  .invest-card.gold::before { background: var(--gold-light); }
+  .invest-card.gray::before { background: var(--gray); }
+
+  .invest-label {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .invest-card.blue .invest-label { color: var(--blue); }
+  .invest-card.gold .invest-label { color: var(--gold-light); }
+  .invest-card.gray .invest-label { color: var(--gray); }
+
+  .invest-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .invest-value-riscado {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--gray);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .invest-detail {
+    font-size: 18px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .invest-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 10px;
+    background: rgba(74,154,180,0.15);
+    border: 1px solid rgba(74,154,180,0.3);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--blue);
+    text-transform: uppercase;
+  }
+
+  /* ── REQUISITOS ── */
+  .req-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .req-col {
+    background: var(--card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .req-header {
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .req-list {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .req-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .req-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bg);
+    flex-shrink: 0;
+  }
+
+  .req-text {
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.5;
+    padding-top: 4px;
+  }
+
+  /* ── ENCERRAMENTO ── */
+  #encerramento {
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #encerramento::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,154,180,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .enc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .enc-quote {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--white);
+  }
+
+  .enc-quote span { color: var(--blue); }
+
+  .enc-handle {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 2px solid var(--blue);
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--blue);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .passos-label {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .passo-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .passo-item.visible { opacity: 1; transform: translateX(0); }
+
+  .passo-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--blue);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bg);
+    flex-shrink: 0;
+  }
+
+  .passo-title {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+
+  .passo-sub {
+    font-size: 17px;
+    color: var(--gray);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 17px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--blue), transparent);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    nav .nav-links { display: none; }
+    section { padding: 100px 20px 60px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .oport-grid { grid-template-columns: 1fr; }
+    .fase-body { grid-template-columns: 1fr; }
+    .fase-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .fase-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .fase-num { font-size: 36px; }
+    .escopo-grid { grid-template-columns: 1fr; }
+    .invest-grid { grid-template-columns: 1fr 1fr; }
+    .req-grid { grid-template-columns: 1fr; }
+    .enc-grid { grid-template-columns: 1fr; gap: 40px; }
+    .topico-body { padding: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 12px 16px; }
+    section { padding: 90px 16px 50px; }
+    h1 { font-size: 38px; }
+    h2 { font-size: 30px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .invest-grid { grid-template-columns: 1fr; }
+    .invest-value { font-size: 38px; }
+    .stat-num { font-size: 40px; }
+    .fase-body { grid-template-columns: 1fr; }
+    .fase-header { padding: 16px; }
+    .fase-col { padding: 16px; }
+    .fase-nota { margin: 0 16px 16px; }
+    .pergunta-num { min-width: 48px; height: 56px; font-size: 18px; }
+    .pergunta-text { font-size: 16px; padding: 0 16px; }
+    .enc-grid { grid-template-columns: 1fr; gap: 32px; }
+    .passo-item { gap: 12px; }
+    .hero-tag { font-size: 14px; letter-spacing: 1px; }
+    .hero-subtitle { font-size: 17px; }
+    .hero-footer { font-size: 14px; }
+    .section-label { font-size: 14px; letter-spacing: 2px; }
+    .invest-card { padding: 20px 16px; }
+    .invest-label { font-size: 14px; }
+    .invest-detail { font-size: 16px; }
+    .escopo-item { font-size: 16px; }
+    .req-text { font-size: 16px; }
+    .step-text { font-size: 17px; }
+    .fase-list li { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <div class="logo">@brunopro.tech</div>
+  <ul class="nav-links">
+    <li><a href="#contexto">Mercado</a></li>
+    <li><a href="#oportunidade">Oportunidade</a></li>
+    <li><a href="#fases">Fases</a></li>
+    <li><a href="#escopo">Escopo</a></li>
+    <li><a href="#investimento">Investimento</a></li>
+    <li><a href="#requisitos">Requisitos</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="section-inner">
+    <div class="hero-tag reveal"><span></span>Proposta Comercial · Guia Gustavo e Mariana · 2026</div>
+    <h1 class="reveal delay-1">Instagram,<br>Conteúdo e<br><span style="color:var(--blue)">Tráfego Pago</span></h1>
+    <p class="hero-subtitle reveal delay-2">Estruturação digital completa para captação de lojistas do varejo de moda na região de Indaiatuba — do perfil do zero até a campanha de leads no WhatsApp.</p>
+    <div class="hero-footer reveal delay-3">IA · Marketing · Tráfego Pago · Maringá, Paraná</div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ── CONTEXTO DE MERCADO ── -->
+<section id="contexto" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-label">Cenário do Setor</div>
+    <h2 class="reveal">O atacado de moda ainda<br>não foi para o digital.</h2>
+    <p style="font-size:19px;color:var(--gray);margin-top:16px;max-width:700px;line-height:1.7" class="reveal delay-1">
+      O polo de atacado de moda de Maringá movimenta volumes expressivos, mas ainda opera quase que inteiramente por relacionamento presencial e WhatsApp. Quem estruturar o canal digital primeiro vai definir o padrão.
+    </p>
+    <div class="stats-grid">
+      <div class="stat-card delay-1">
+        <div style="display:flex;align-items:baseline;gap:2px;line-height:1">
+          <span class="stat-num">80</span><span style="font-family:'Rajdhani',sans-serif;font-size:46px;font-weight:700;color:var(--blue)">%</span>
+        </div>
+        <p class="stat-text">do faturamento dos lojistas de varejo é iniciado ou concluído pelo WhatsApp</p>
+      </div>
+      <div class="stat-card delay-2">
+        <div style="display:flex;align-items:baseline;gap:2px;line-height:1">
+          <span class="stat-num">20</span><span style="font-family:'Rajdhani',sans-serif;font-size:46px;font-weight:700;color:var(--blue)">%</span>
+        </div>
+        <p class="stat-text">dos lojistas do setor utilizam tráfego pago atualmente</p>
+      </div>
+      <div class="stat-card delay-3">
+        <div style="display:flex;align-items:baseline;gap:2px;line-height:1">
+          <span class="stat-num">1</span><span style="font-family:'Rajdhani',sans-serif;font-size:46px;font-weight:700;color:var(--blue)">%</span>
+        </div>
+        <p class="stat-text">direciona campanhas para o canal atacado — a quase totalidade foca no varejo final</p>
+      </div>
+      <div class="stat-card delay-4">
+        <p class="stat-text" style="margin-top:0;font-size:19px">Nenhum guia de compras do polo opera com estrutura digital própria para captação de lojistas em regiões novas — a oportunidade está em aberto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OPORTUNIDADE ── -->
+<section id="oportunidade" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="section-label">A Oportunidade</div>
+    <h2 class="reveal">Indaiatuba: mercado novo,<br>sem concorrência digital.</h2>
+    <div class="oport-grid">
+      <div class="oport-card reveal-left delay-1">
+        <div class="oport-label">Como funciona</div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">Perfil do Instagram criado do zero para a região de Indaiatuba e SP interior</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">Conteúdo que gera credibilidade — produto, polo, depoimentos, bastidores das lojas</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">Anúncio segmentado atinge lojistas de moda da região com oferta de visita ao polo</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text">Lead chega direto no WhatsApp — pronto para negociação e agendamento de visita</div>
+        </div>
+      </div>
+      <div class="reveal-right delay-2">
+        <div class="quote-card" style="margin-top:0">
+          Antes de investir em tráfego pago, é necessário ter um perfil que transmita credibilidade. Um anúncio que leva para uma página vazia ou sem identidade desperdiça verba e afasta o lead. A estruturação vem primeiro — o tráfego potencializa o que já existe.
+        </div>
+        <div class="quote-card" style="margin-top:16px;border-color:var(--gold-light)">
+          O conteúdo produzido para o Instagram do Guia pode ser compartilhado diretamente pelas lojas parceiras — gerando valor para os dois lados e ampliando o alcance orgânico sem custo adicional.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FASES ── -->
+<section id="fases" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-label">Modelo de Execução</div>
+    <h2 class="reveal">Começar certo.<br>Escalar com base.</h2>
+
+    <div class="fase-wrapper">
+
+      <!-- FASE 1 -->
+      <div class="fase-block delay-1" style="background:var(--card)">
+        <div class="fase-header" style="background:rgba(74,154,180,0.1)">
+          <div class="fase-num" style="color:var(--blue)">01</div>
+          <div class="fase-header-content">
+            <div class="fase-tag" style="color:var(--blue)">Fase 1 · Mês 1 e 2</div>
+            <div class="fase-title">Estruturação do Instagram e Produção de Conteúdo</div>
+          </div>
+        </div>
+        <div class="fase-body">
+          <div class="fase-col">
+            <div class="fase-col-label" style="color:var(--blue)">O que será feito</div>
+            <ul class="fase-list blue">
+              <li>Criação do perfil do Instagram para Indaiatuba e região</li>
+              <li>Configuração completa de biografia, identidade visual e destaques</li>
+              <li>Produção de 4 posts por mês — carrosséis e estáticos</li>
+              <li>Roteiro e coordenação de pessoa para gravação de vídeos</li>
+              <li>Edição dos conteúdos produzidos</li>
+              <li>Aproveitamento de criativos do gestor atual sempre que possível</li>
+            </ul>
+          </div>
+          <div class="fase-col">
+            <div class="fase-col-label" style="color:var(--blue)">O que o Guia ganha</div>
+            <ul class="fase-list blue">
+              <li>Perfil profissional e credível antes de qualquer anúncio</li>
+              <li>Presença digital estabelecida na região de Indaiatuba</li>
+              <li>Conteúdo que já pode ser compartilhado pelas lojas parceiras</li>
+              <li>Base pronta para as campanhas de tráfego entrarem com máximo aproveitamento</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fase-nota" style="background:rgba(74,154,180,0.06);border:1px solid rgba(74,154,180,0.2);color:var(--blue)">
+          Nesta fase não há verba de mídia rodando — o investimento vai inteiro para estruturação e produção de conteúdo.
+        </div>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="fase-block delay-2" style="background:var(--card)">
+        <div class="fase-header" style="background:rgba(168,152,32,0.1)">
+          <div class="fase-num" style="color:var(--gold-light)">02</div>
+          <div class="fase-header-content">
+            <div class="fase-tag" style="color:var(--gold-light)">Fase 2 · A partir do Mês 3</div>
+            <div class="fase-title">Gestão de Tráfego Pago + Manutenção do Perfil</div>
+          </div>
+        </div>
+        <div class="fase-body">
+          <div class="fase-col">
+            <div class="fase-col-label" style="color:var(--gold-light)">O que será feito</div>
+            <ul class="fase-list gold">
+              <li>Implantação do Business Manager e conta de anúncios no Meta</li>
+              <li>Criação e gestão de campanhas de mensagens diretas para WhatsApp</li>
+              <li>Segmentação por perfil de lojista de moda em Indaiatuba e região</li>
+              <li>Acompanhamento de resultados com relatório quinzenal</li>
+              <li>Manutenção do Instagram com 4 posts mensais</li>
+              <li>Otimização contínua das campanhas com base nos dados</li>
+            </ul>
+          </div>
+          <div class="fase-col">
+            <div class="fase-col-label" style="color:var(--gold-light)">O que o Guia ganha</div>
+            <ul class="fase-list gold">
+              <li>Leads de lojistas chegando direto no WhatsApp</li>
+              <li>Estrutura técnica separada e independente — sem conflito com o gestor atual</li>
+              <li>Visibilidade real sobre custo por lead e volume de atendimentos</li>
+              <li>Perfil que cresce e gera confiança em paralelo às campanhas</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fase-nota" style="background:rgba(168,152,32,0.06);border:1px solid rgba(168,152,32,0.25);color:var(--gold-light)">
+          A verba de mídia entra somente nesta fase — definida pelo Guia conforme capacidade e meta de captação.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── ESCOPO ── -->
+<section id="escopo" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="section-label">Escopo do Serviço</div>
+    <h2 class="reveal">O que está incluído —<br>e o que não está.</h2>
+    <div class="escopo-grid">
+      <div class="escopo-col reveal-left delay-1">
+        <div class="escopo-header" style="background:rgba(74,154,180,0.15);color:var(--blue)">Incluído</div>
+        <div class="escopo-list">
+          <div class="escopo-item"><span class="escopo-icon" style="color:var(--blue)">✓</span>Criação e configuração do perfil do Instagram para Indaiatuba</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:var(--blue)">✓</span>4 posts por mês — carrosséis, estáticos e adaptação de vídeos</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:var(--blue)">✓</span>Roteiro e coordenação da produção de vídeo com pessoa contratada</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:var(--blue)">✓</span>Edição dos conteúdos produzidos</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:var(--blue)">✓</span>Criação do Business Manager e conta de anúncios (Fase 2)</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:var(--blue)">✓</span>Gestão de campanhas de mensagens para WhatsApp (Fase 2)</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:var(--blue)">✓</span>Relatório quinzenal de resultados (Fase 2)</div>
+        </div>
+      </div>
+      <div class="escopo-col reveal-right delay-2">
+        <div class="escopo-header" style="background:rgba(204,74,42,0.15);color:#E87755">Não incluído neste escopo</div>
+        <div class="escopo-list">
+          <div class="escopo-item"><span class="escopo-icon" style="color:#E87755">✕</span>Gestão das campanhas já contratadas com o outro gestor</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:#E87755">✕</span>Gestão de redes sociais além do Instagram de Indaiatuba</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:#E87755">✕</span>Produção de vídeos com equipe presencial própria</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:#E87755">✕</span>Gestão de outras plataformas além do Meta Ads</div>
+          <div class="escopo-item"><span class="escopo-icon" style="color:#E87755">✕</span>Verba de mídia — definida e aportada pelo Guia separadamente</div>
+        </div>
+        <div class="escopo-note">Serviços fora do escopo podem ser discutidos e orçados separadamente conforme necessidade.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INVESTIMENTO ── -->
+<section id="investimento" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-label">Investimento</div>
+    <h2 class="reveal">Simples, previsível<br>e com retorno mensurável.</h2>
+    <div class="invest-grid">
+
+      <div class="invest-card blue delay-1">
+        <div class="invest-label">Gestão Mensal</div>
+        <div class="invest-value">R$ 1.300</div>
+        <div class="invest-detail">por mês<br>Gestão do Instagram + produção de conteúdo + gestão de tráfego (Fase 2)</div>
+        <div class="invest-badge">Fase 1 e Fase 2</div>
+      </div>
+
+      <div class="invest-card gray delay-2">
+        <div class="invest-label">Implantação</div>
+        <div class="invest-value-riscado">R$ 1.000</div>
+        <div class="invest-value">R$ 500</div>
+        <div class="invest-detail">cobrado uma única vez<br>Configuração do BM, conta de anúncios e estrutura de campanhas</div>
+        <div class="invest-badge">Somente na entrada da Fase 2</div>
+      </div>
+
+      <div class="invest-card blue delay-3">
+        <div class="invest-label">Produção de Conteúdo</div>
+        <div class="invest-value">R$ 1.000</div>
+        <div class="invest-detail">por mês<br>Nos meses 1 e 2 — no lugar da verba de mídia</div>
+        <div style="margin-top:16px;font-size:17px;color:var(--white);line-height:1.6">
+          Contratação de pessoa para gravar os vídeos. Roteirização, direção e edição por minha conta — o Guia não precisa se preocupar com nenhuma etapa da produção.
+        </div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(168,152,32,0.08);border:1px solid rgba(168,152,32,0.25);font-size:16px;color:var(--gold-light);font-style:italic;line-height:1.5">
+          Se houver alguém da equipe do Guia disponível para gravar os vídeos, este custo não se aplica — roteiro e edição seguem incluídos.
+        </div>
+        <div class="invest-badge">Somente na Fase 1</div>
+      </div>
+
+      <div class="invest-card gold delay-4">
+        <div class="invest-label">Verba de Anúncios</div>
+        <div class="invest-value">R$ 1.000+</div>
+        <div class="invest-detail">mínimo por mês<br>Definida pelo Guia — vai 100% para o Meta Ads</div>
+        <div class="invest-badge" style="border-color:rgba(232,212,77,0.3);color:var(--gold-light)">Somente na Fase 2</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── REQUISITOS ── -->
+<section id="requisitos" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="section-label">Para Começar</div>
+    <h2 class="reveal">O que precisamos<br>de cada lado.</h2>
+    <div class="req-grid">
+      <div class="req-col reveal-left delay-1">
+        <div class="req-header" style="background:rgba(74,154,180,0.15);color:var(--blue)">O que o Guia precisa fornecer</div>
+        <div class="req-list">
+          <div class="req-item">
+            <div class="req-num" style="background:var(--blue)">1</div>
+            <div class="req-text">Acesso ao perfil pessoal do Facebook para criação do Business Manager (Fase 2)</div>
+          </div>
+          <div class="req-item">
+            <div class="req-num" style="background:var(--blue-light)">2</div>
+            <div class="req-text">Briefing sobre o negócio, as lojas parceiras e o perfil do lojista ideal que deseja captar</div>
+          </div>
+          <div class="req-item">
+            <div class="req-num" style="background:var(--blue)">3</div>
+            <div class="req-text">Disponibilidade para responder os leads no WhatsApp em até 30 minutos após o contato</div>
+          </div>
+          <div class="req-item">
+            <div class="req-num" style="background:var(--blue-light)">4</div>
+            <div class="req-text">Criativos disponíveis do gestor atual que possam ser reaproveitados para Indaiatuba</div>
+          </div>
+        </div>
+      </div>
+      <div class="req-col reveal-right delay-2">
+        <div class="req-header" style="background:rgba(168,152,32,0.15);color:var(--gold-light)">O que fica sob minha responsabilidade</div>
+        <div class="req-list">
+          <div class="req-item">
+            <div class="req-num" style="background:var(--gold)">1</div>
+            <div class="req-text">Localização e contratação da pessoa para representar a marca nos vídeos</div>
+          </div>
+          <div class="req-item">
+            <div class="req-num" style="background:var(--gold)">2</div>
+            <div class="req-text">Criação de todos os roteiros de conteúdo com base no briefing do Guia</div>
+          </div>
+          <div class="req-item">
+            <div class="req-num" style="background:var(--gold-light);color:#333">3</div>
+            <div class="req-text">Edição e publicação de todo o conteúdo produzido</div>
+          </div>
+          <div class="req-item">
+            <div class="req-num" style="background:var(--gold-light);color:#333">4</div>
+            <div class="req-text">Toda a estrutura técnica do Meta — BM, conta de anúncios, pixel e campanhas (Fase 2)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ENCERRAMENTO ── -->
+<section id="encerramento">
+  <div class="section-inner">
+    <div class="enc-grid">
+      <div class="reveal-left">
+        <div class="enc-quote">"Antes do tráfego, a <span>credibilidade</span>. Antes da campanha, a <span>estrutura</span>."</div>
+        <div class="enc-handle">@brunopro.tech · Maringá, PR</div>
+      </div>
+      <div>
+        <div class="passos-label">Próximos Passos</div>
+        <div class="passo-item delay-1">
+          <div class="passo-num">1</div>
+          <div class="passo-content">
+            <div class="passo-title">Aprovação da proposta</div>
+            <div class="passo-sub">Alinhamento de escopo e início do contrato</div>
+          </div>
+        </div>
+        <div class="passo-item delay-2">
+          <div class="passo-num">2</div>
+          <div class="passo-content">
+            <div class="passo-title">Sessão de briefing</div>
+            <div class="passo-sub">Levantamento do negócio, lojas parceiras e perfil do lojista ideal</div>
+          </div>
+        </div>
+        <div class="passo-item delay-3">
+          <div class="passo-num">3</div>
+          <div class="passo-content">
+            <div class="passo-title">Criação do perfil e primeiros conteúdos</div>
+            <div class="passo-sub">Instagram no ar com identidade visual e primeiros posts — até 10 dias úteis</div>
+          </div>
+        </div>
+        <div class="passo-item delay-4">
+          <div class="passo-num">4</div>
+          <div class="passo-content">
+            <div class="passo-title">Avaliação e entrada na Fase 2</div>
+            <div class="passo-sub">Após 30 a 60 dias — perfil estruturado, campanha de tráfego no ar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  document.getElementById('progress-bar').style.width = progress + '%';
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .section-label, .stat-card, .fase-block, .invest-card, .passo-item').forEach(el => {
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
